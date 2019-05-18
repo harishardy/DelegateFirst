@@ -12,22 +12,53 @@ class ViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var firstTextField: UITextField!
     
-    var text = UITextField()
+
     
     override func viewDidLoad() {
-        
-        text.frame = CGRect(x: 100, y: 100, width: 270, height: 100)
-        text.backgroundColor = .red
-        text.textAlignment = .center
-        text.text = ""
-        text.delegate = self
-        text.textColor =  UIColor.green
-        self.view.addSubview(text)
-        
-        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool // return NO to disallow editing.
+    {
+        print("textFieldShouldBeginEditing")
+        return true
+    }
+    
+    
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
+    {
+       print("textFieldShouldEndEditing")
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool // return NO to not change text
+    {
+        
+        print("shouldChangeCharactersIn range")
+        return true
+    }
+    
+    
+    
+    
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool // called when clear button pressed. return NO to ignore (no notifications)
+    {
+        print("textFieldShouldClear")
+        return true
+    }
+    
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
+    
+    
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
     {
